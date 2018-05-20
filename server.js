@@ -12,6 +12,14 @@ app.get('/', function(req, res){
 	res.render('home');
 });
 
+app.get('/home', function(req, res){
+	res.render('home');
+});
+
+app.get('/add-delete-update', function(req, res){
+	res.render('add_delete_update_manufacturer');
+});
+
 app.use(function(req, res){
 	res.status(404);
 	res.render('404');

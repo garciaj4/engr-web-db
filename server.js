@@ -4,7 +4,7 @@ var port = process.env.PORT || 8080;
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-app.use(express.static(_dirname));
+app.use(express.static(__dirname));
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 

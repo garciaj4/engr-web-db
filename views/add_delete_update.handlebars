@@ -1,0 +1,58 @@
+<h1> In this ppage you can add, delete or edit a manufacturer</h1>
+
+<form>
+    <fieldset>
+      <legend>Add a Manufacturer:</legend>
+      <label for="name"></label>
+      <label>Name:
+          <input id="name" type="text" name="name" size="30" maxlength="100">
+      </label>
+      <br />
+      <label>Phone Number:
+          <input id ="Manuf_Phone_Number" type="text" name="Phone" size="30" maxlength="100">
+      </label>
+      <br />
+      <label>Zip:
+          <input id ="man_zip" type="text" name="weight" size="30" maxlength="100">
+      </label>
+      <br />
+      <label>Discount:
+          <input id="date_in" type="number" name="date" size="30" maxlength="100">
+      </label> Preferred:
+      <br />
+      <input id="preferred_true" type="radio" name="preferred" value="true" />Yes</label>
+      <input id="preferred_false" type="radio" name="preferred" value="false" />No </label>
+      <br />
+      <input type="submit" id="manufacturer_submit">
+    </fieldset>
+</form>
+
+<br />
+
+<table id="manufacturer_table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Zip</th>
+            <th>Discount</th>
+            <th>Preferred</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <!--tbody id="manufacturer_table_body">
+        {{#data.manufacturer}}
+        <tr>
+            <td id="id" style="display:none">{{id}}</td>
+            <td id="name">{{name}}</td>
+            <td id="reps">{{reps}}</td>
+            <td id="weight">{{weight}}</td>
+            <td id="date">{{date}}</td>
+            <td id="lbs">{{lbs}}</td>
+            <td id="delete"> <input type="button" value="delete" onClick="delete_row(this)"/></td>
+            <td id="edit"> <input type="button" value="edit" onClick="edit_row(this)"/></td>
+        </tr>
+        {{/data.manufacturer}}
+    </tbody-->
+</table>

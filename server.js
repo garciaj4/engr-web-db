@@ -16,8 +16,8 @@ app.get('/home', function(req, res){
 	res.render('home');
 });
 
-app.get('/add-delete-update', function(req, res){
-	res.render('/add_delete_update_manufacturer');
+app.get('/modify-manufacturer', function(req, res){
+	res.render('modify_manufacturer');
 });
 
 app.use(function(req, res){

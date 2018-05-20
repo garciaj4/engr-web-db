@@ -16,8 +16,8 @@ app.get('/home', function(req, res){
 	res.render('home');
 });
 
-app.get('/modify-manufacturer', function(req, res){
-	res.render('modify_manufacturer');
+app.get('/manufacturer', function(req, res){
+	res.render('manufacturer');
 });
 
 app.use(function(req, res){

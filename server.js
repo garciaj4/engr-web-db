@@ -25,16 +25,19 @@ app.get('/home', function(req, res){
 });
 
 app.get('/manufacturer', function(req, res){
-	var context = {};
+	data = {};
 	connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){
 		if ((err)) {
 			next(err);
 			return;
 		}
-		context.results = JSON.stringify(rows);
+		data.manufacturers = rows;
+		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});
-	res.render('manufacturer', context);
+
 });
+
+app.get('/manufacturer')
 
 app.use(function(req, res){
 	res.status(404);
@@ -49,5 +52,5 @@ app.use(function(err, req, res, next){
 });
 
 app.listen(port, function(){
-	console.log("App Running");
+	console.log("App Running on port: " + port + ".  Ctrl+C to terminate.");
 });

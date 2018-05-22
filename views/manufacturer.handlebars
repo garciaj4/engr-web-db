@@ -1,4 +1,6 @@
-<h1> In this ppage you can add, delete or edit a manufacturer</h1>
+<!doctype html>
+
+<h1> On this page you can add, delete or edit a manufacturer</h1>
 
 <form>
     <fieldset>
@@ -33,26 +35,30 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Phone</th>
-            <th>Zip</th>
             <th>Discount</th>
-            <th>Preferred</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>Preferred Vendor</th>
+            <th>Phone</th>
+            <th>Zip Code</th>
         </tr>
     </thead>
     <tbody id="manufacturer_table_body">
-        {{#data.manufacturer}}
+        {{#manufacturer}}
         <tr>
-            <td id="id" style="display:none">{{id}}</td>
-            <td id="name">{{name}}</td>
-            <td id="reps">{{reps}}</td>
-            <td id="weight">{{weight}}</td>
-            <td id="date">{{date}}</td>
-            <td id="lbs">{{lbs}}</td>
-            <td id="delete"> <input type="button" value="delete" onClick="delete_row(this)"/></td>
-            <td id="edit"> <input type="button" value="edit" onClick="edit_row(this)"/></td>
+            <td id="id" style="display:none;">{{this.Manufacturer_id}}</td>
+            <td id="name"> <input value="{{this.Manufacturer_name}}"></td>
+            <td id="discount"> <input value="{{this.Manufacturer_discount}}"> </td>
+            <td id="preferred">
+              {{#if this.Manufacturer_preferred}}
+                <input value="Yes">
+              {{else}}
+                <input value="No">
+              {{/if}}
+            </td>
+            <td id="phone"> <input value="{{this.Manufacturer_phone}}"> </td>
+            <td id="zip"> <input value="{{this.Manufacturer_zip}}"> </td>
+            <td id="edit"><a href='/delete?id={{this.Manufacturer_id}}'>Delete</a></td>
+            <td id="edit"><a href='/update?id={{this.Manufacturer_id}}'>Update</a></td>
         </tr>
-        {{/data.manufacturer}}
+        {{/manufacturer}}
     </tbody>
 </table>

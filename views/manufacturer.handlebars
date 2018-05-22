@@ -56,3 +56,14 @@
         {{/data.manufacturer}}
     </tbody-->
 </table>
+
+<--! Selecting and populating all rows from Manufacturers table in db -->
+
+{{#each rows}}
+  <form>
+
+    <label for="Manufacturer_name">Name</label>
+    <input type = "text" name="Manufacturer_name" value="{{this.Manufacturer.name}}">
+
+  </form>
+{{/each}}

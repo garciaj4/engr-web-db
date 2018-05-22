@@ -6,9 +6,9 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
 var mysql = require ('mysql')
 var connection = mysql.createConnection({
-	host		: 'classmysql.engr.oregonstate.edu'
-	user		: 'cs340_garciaj4'
-	password	: '5417'
+	host		: 'classmysql.engr.oregonstate.edu',
+	user		: 'cs340_garciaj4',
+	password	: '5417',
 	database	: 'cs340_garciaj4'
 });
 

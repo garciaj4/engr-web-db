@@ -27,10 +27,6 @@ app.get('/home', function(req, res){
 app.get('/manufacturer', function(req, res){
 	data = {};
 	connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){
-		if ((err)) {
-			next(err);
-			return;
-		}
 		data.manufacturers = rows;
 		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});

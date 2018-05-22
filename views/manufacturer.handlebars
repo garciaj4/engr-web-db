@@ -42,7 +42,7 @@
         </tr>
     </thead>
     <!--tbody id="manufacturer_table_body">
-        {{#data.manufacturer}}
+        {{#context.manufacturer}}
         <tr>
             <td id="id" style="display:none">{{id}}</td>
             <td id="name">{{name}}</td>
@@ -56,12 +56,3 @@
         {{/data.manufacturer}}
     </tbody-->
 </table>
-
-{{#each rows}}
-  <form>
-
-    <label for="Manufacturer_name">Name</label>
-    <input type = "text" name="Manufacturer_name" value="{{this.name}}">
-
-  </form>
-{{/each}}

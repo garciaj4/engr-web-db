@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+    </head>
+    <body>
+<h2> In this page you can add, delete or edit a product</h2>
+<h4> You can also display all the product records and search for specific products </h4>
+<form>
+    <fieldset>
+      <legend>Add a product:</legend>
+      <label for="name"></label>
+      <label>Name:
+          <input id="prod_name" type="text" name="name" size="30" maxlength="100">
+      </label>
+      <br />
+      <label>Description:
+          <input id ="Product_description" type="text" name="p_description" size="30" maxlength="100">
+      </label>
+       <br />
+      <label>Cost:
+          <input id="product_cost" type="number" name="prod_cost" size="30" maxlength="100"> 
+        </label>
+   <label>Price:
+          <input id="product_price" type="number" name="prod_price" size="30" maxlength="100"> 
+        </label>
+      <br>
+      <input type="submit" id="prod_submit">
+    </fieldset>
+</form>
+
+<form>
+    <fieldset>
+      <legend>Search product records:</legend>
+      <label for="name"></label>
+      <label>Name:
+          <input id="name" type="text" name="name" size="30" maxlength="100">
+      <input type="submit" id="customer_search" value = "search"> 
+      
+    </fieldset>
+</form>
+
+  
+
+<br>
+<h4> Here are all the product records, edit or delete records if needed </h4>
+<table id="manufacturer_table" >
+    <thead>
+        <tr border="1px">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Price</th>
+            <th> <input type="submit" id="customer_edit" value = "edit"> </th>
+            <th> <input type="submit" id="customer_delete" value = "delete"> </th>
+        </tr>
+    </thead>
+
+    </body>
+  </html>

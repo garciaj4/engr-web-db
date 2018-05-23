@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+    </head>
+    <body>
+<h2> In this page you can add, delete or edit a customer</h2>
+<h4> You can also display all the customer records and search for specific records </h4>
+<form>
+    <fieldset>
+      <legend>Add a Customer:</legend>
+      <label for="name"></label>
+      <label>Name:
+          <input id="cust_name" type="text" name="name" size="30" maxlength="100">
+      </label>
+      <br />
+      <label>Phone Number:
+          <input id ="cust_Phone_Number" type="text" name="M_phone" size="30" maxlength="100">
+      </label>
+       <br />
+      <label>Adress Street:
+          <input id="Street" type="text" name="Street" size="30" maxlength="100"> 
+        </label>
+        <label>City:
+          <input id="City" type="text" name="City" size="30" maxlength="100"> 
+        </label>
+      <label>Zip:
+          <input id ="cust_zip" type="text" name="cust_zip" size="30" maxlength="100">
+      </label>
+      <br>
+      <label>Discount:
+          <input id="Discount" type="number" name="Discount" size="30" maxlength="100"> <br/>
+      </label> Preferred:
+      <br>
+      <input type="submit" id="manufacturer_submit">
+    </fieldset>
+</form>
+
+<form>
+    <fieldset>
+      <legend>Search client records:</legend>
+      <label for="name"></label>
+      <label>Name:
+          <input id="name" type="text" name="name" size="30" maxlength="100">
+      </label>
+
+      <label>Zip:
+          <input id ="cust_zip" type="text" name="cust_zip" size="30" maxlength="100">
+      </label>
+            <label>city:
+          <input id ="cust_zip" type="text" name="city" size="30" maxlength="100">
+      </label>
+      <input type="submit" id="customer_search" value = "search"> 
+      
+    </fieldset>
+</form>
+
+  
+
+<br>
+<h4> Here are all the customer records, edit or delete records if needed </h4>
+<table id="manufacturer_table" >
+    <thead>
+        <tr border="1px">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th> <input type="submit" id="customer_edit" value = "edit"> </th>
+            <th> <input type="submit" id="customer_delete" value = "delete"> </th>
+        </tr>
+    </thead>
+
+    </body>
+  </html>

@@ -1,3 +1,4 @@
+<!doctype html>
 <h1> On this page you can add, delete or edit a manufacturer</h1>
 
 <form>
@@ -42,21 +43,27 @@
     <tbody id="manufacturer_table_body">
         {{#manufacturer}}
         <tr>
-            <td id="id" style="display:none;">{{this.Manufacturer_id}}</td>
-            <td id="name"> <input value="{{this.Manufacturer_name}}"></td>
-            <td id="discount"> <input value="{{this.Manufacturer_discount}}"> </td>
-            <td id="preferred">
+            <td id="man{{this.Manufacturer_id}}_id" style="display:none;">{{this.Manufacturer_id}}</td>
+            <td> <input id="man{{this.Manufacturer_id}}_name" value="{{this.Manufacturer_name}}"></td>
+            <td> <input id="man{{this.Manufacturer_id}}_discount" value="{{this.Manufacturer_discount}}"> </td>
+            <td>
               {{#if this.Manufacturer_preferred}}
-                <input value="Yes">
+                <input id="man{{this.Manufacturer_id}}_preferred" value="Yes">
               {{else}}
-                <input value="No">
+                <input id="man{{this.Manufacturer_id}}_preferred" value="No">
               {{/if}}
             </td>
-            <td id="phone"> <input value="{{this.Manufacturer_phone}}"> </td>
-            <td id="zip"> <input value="{{this.Manufacturer_zip}}"> </td>
-            <td id="edit"><a href='/delete?id={{this.Manufacturer_id}}'>Delete</a></td>
-            <td id="edit"><a href='/update?id={{this.Manufacturer_id}}'>Update</a></td>
+            <td> <input id="man{{this.Manufacturer_id}}_phone" value="{{this.Manufacturer_phone}}"> </td>
+            <td> <input id="man{{this.Manufacturer_id}}_zip" value="{{this.Manufacturer_zip}}"> </td>
+            <td id="man{{this.Manufacturer_id}}_delete">
+              <a href="javascript:deleteManufacturer({{this.Manufacturer_id}});">
+              Delete</a></td>
+            <td id="man{{this.Manufacturer_id}}_edit">
+              <a href="javascript:updateManufacturer({{this.Manufacturer_id}});">
+              Update</a>
+            </td>
         </tr>
         {{/manufacturer}}
     </tbody>
 </table>
+

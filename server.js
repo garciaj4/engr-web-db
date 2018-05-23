@@ -33,7 +33,27 @@ app.get('/manufacturer', function(req, res){
 
 });
 
-app.get('/manufacturer')
+app.get('/manufacturer-delete', function(req, res, next){
+	connection.query('DELETE FROM Manufacturers WHERE Manufacturer_id=?', [req.query.id], function(err, result){
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to delete a Manufacturer.");
+			return;
+		}
+	});
+});
+
+app.get('/manufacturer-update', function(req, res, next){
+	connection.query('UPDATE Manufacturers Set Manufacturer_name=?, Manufacturer_discount=?, Manufacturer_preferred=?, Manufacturer_phone=?, Manufacturer_zip=? WHERE Manufacturer_id=?',
+		[req.query.name, req.query.discount, req.query.preferred, req.query.phone, req.query.zip, req.query.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+		});
+});
 
 app.use(function(req, res){
 	res.status(404);

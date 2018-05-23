@@ -28,6 +28,11 @@ app.get('/manufacturer', function(req, res){
 	data = {};
 	connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){
 		data.manufacturers = rows;
+		if(err){
+			console.log(err);
+			console.log("Something has gone wrong trying to retrieve Manufacturers rows from db.");
+			return;
+		}
 		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});
 

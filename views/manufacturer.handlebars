@@ -1,30 +1,19 @@
-<!DOCTYPE html>
+
 <h1> On this page you can add, delete or edit a manufacturer</h1>
 
-<form>
-    <fieldset>
-      <legend>Add a Manufacturer:</legend>
-      <label for="name"></label>
-      <label>Name:
-          <input id="name" type="text" name="name" size="30" maxlength="100">
-      </label>
-      <br />
-      <label>Phone Number:
-          <input id ="Manuf_Phone_Number" type="text" name="Phone" size="30" maxlength="100">
-      </label>
-      <br />
-      <label>Zip:
-          <input id ="man_zip" type="text" name="weight" size="30" maxlength="100">
-      </label>
-      <br />
-      <label>Discount:
-          <input id="date_in" type="number" name="date" size="30" maxlength="100">
-      </label> Preferred:
-      <br />
-      <input id="preferred_true" type="radio" name="preferred" value="true" />Yes</label>
-      <input id="preferred_false" type="radio" name="preferred" value="false" />No </label>
-      <br />
-      <input type="submit" id="manufacturer_submit">
+<form id ="addmanufacturer" action="/manufacturer" method ="post" >
+	<fieldset>
+		<legend>Add a Manufacturer:</legend>
+		 Name:<input id="mname" type="text" name="mname"> <br>
+    		 Phone Number:<input id ="mphone" type="text" name="mphone"> <br>
+      		Zip: <input id ="mzip" type="text" name="mzip"> <br>
+      		Discount: <input id="mdiscount" type="number" name="mdiscount"> <br>
+      Preferred:
+      <br>
+      <input id="preferred_true" type="radio" name="mpreferred" value="true" />Yes</label>
+      <input id="preferred_false" type="radio" name="mpreferred" value="false" />No </label>
+      <br>
+      <input type="submit" id="manufacturer_add" text= "add">
     </fieldset>
 </form>
 

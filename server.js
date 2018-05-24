@@ -1,5 +1,5 @@
 var express = require('express');
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080 ;
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -22,6 +22,27 @@ app.get('/', function(req, res){
 
 app.get('/home', function(req, res){
 	res.render('home');
+});
+
+app.get ('/customer', function (req,res){
+	res.render ('customer');
+});
+
+app.get('/product', function (req,res){
+	res.render ('product');
+});
+app.get ('/manufacturer-insert', function (req, res, next) {
+// if (req.query.mname != '') 
+var context ={};
+var inserts = [req.body.mname, req.body.mphone, req.body.mzip, req.body.mdiscount, req.body.mpreferred];
+mysql.connection.query ('INSERT INTO Manufacturer (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacurer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)', inserts, function (err, results) {
+ if (err) {
+next (err);
+return;
+} 
+ res.render ('manufacturer');
+
+});
 });
 
 app.get('/manufacturer', function(req, res){
@@ -49,24 +70,15 @@ app.get('/manufacturer-delete', function(req, res, next){
 });
 
 app.get('/manufacturer-update', function(req, res, next){
-	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_id=?', [req.query.id], function(err, result){
-		if(err){
-			console.log(err);
-			console.log("Something went wrong pulling record from Db to update.");
-		}else{
-			var curvals = result[0];
-			connection.query('UPDATE Manufacturers Set Manufacturer_name=?, Manufacturer_discount=?, Manufacturer_preferred=?, Manufacturer_phone=?, Manufacturer_zip=? WHERE Manufacturer_id=?',
-				[req.query.name || curvals.name, req.query.discount || curvals.discount, req.query.preferred || curvals.preferred, req.query.phone || curvals.phone, req.query.zip || curvals.zip, req.query.id],
-				function(err, result){
-					if(err){
-					console.log(err);
-					console.log("Something went wrong trying to update a Manufacturer.");
-					return;
-					}
-				}
-			);
-		}
-	})
+	connection.query('UPDATE Manufacturers Set Manufacturer_name=?, Manufacturer_discount=?, Manufacturer_preferred=?, Manufacturer_phone=?, Manufacturer_zip=? WHERE Manufacturer_id=?',
+		[req.query.name, req.query.discount, req.query.preferred, req.query.phone, req.query.zip, req.query.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+		});
 });
 
 app.use(function(req, res){

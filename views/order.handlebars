@@ -1,0 +1,48 @@
+
+<h2> In this page you can add, delete or edit an Order</h2>
+<h4> You can also display all the orders records and search for specific records </h4>
+<form>
+    <fieldset>
+      <legend>Add an Order :</legend>
+      Status:  <input id="status" type="text" name="status"> <br>
+      Date Created:  <input id ="datec" type="text" name="datec"> <br>
+      Date Fulfilled:  <input id ="datef" type="text" name="datef"> <br>
+      {{! -- Customer: <select name = "Customer">
+      {{#each Customer}} 
+      <option value=" {{Customer_id}}"> {{name}} </option>
+      </select> <br> --}}
+    </fieldset>
+</form>
+
+<form>
+    <fieldset>
+      <legend>Search Orders:</legend>
+      Status:  <input id="status" type="text" name="status"> 
+      Date Created:  <input id ="datec" type="text" name="datec"> 
+      Date Fulfilled:  <input id ="datef" type="text" name="datef"> <
+      {{! -- Customer: <select name = "Customer">
+      {{#each Customer}} 
+      <option value=" {{Customer_id}}"> {{name}} </option>
+      </select> <br> --}}
+    </fieldset>
+</form>
+
+<br>
+
+<form>
+    <fieldset>
+      <legend>Search or modify the products within an order:</legend>
+      
+    </fieldset>
+</form>
+
+<h4> Here are all the orders records, edit or delete records if needed </h4>
+<table id="orders_table" >
+    <thead>
+        <tr border="1px">
+            <th>Status</th>
+            <th>Date Created</th>
+            <th>Date Fullfilled</th>
+            <th>Customer_id</th>
+        </tr>
+    </thead>

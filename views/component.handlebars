@@ -1,0 +1,38 @@
+<h1> On this page you can add, delete or edit a Component</h1>
+
+<form>
+    <fieldset>
+      <legend>Add a Component:</legend>
+      Part Number:  <input id="pnumber" type="text" name="pnumber"> <br>
+      Type:  <input id ="ctype" type="text" name="ctype"> <br>
+      Stock: <input id="cstock" type="number" name="cstock"> <br>  
+      Manufacturer tbd <input type ="text">
+      Cost: <input id="ccost" type="text" name="ccost"> <br> 
+      Lead Time: <input id ="Lead" type="text" name="Lead"> <br>
+    </fieldset>
+</form>
+
+<form>
+    <fieldset>
+      <legend>Search components records:</legend>
+      Part Number: <input id="pnumber" type="text" name="pnumber">
+      Manufacturer tbd
+    </fieldset>
+</form>
+
+<br>
+<h4> Here are all the components records, edit or delete records if needed </h4>
+<table id="components_table" >
+    <thead>
+        <tr border="1px">
+            <th>Part Number</th>
+            <th>Type</th>
+            <th>Stock</th>
+            <th>Manufacturer</th>
+            <th>Cost</th>
+            <th>Lead Time</th>
+            <th> <input type="submit" id="customer_edit" value = "edit"> </th>
+            <th> <input type="submit" id="customer_delete" value = "delete"> </th>
+        </tr>
+    </thead>
+</table>

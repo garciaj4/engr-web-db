@@ -1,5 +1,5 @@
 var express = require('express');
-var port = process.env.PORT || 8080 ;
+var port = process.env.PORT ||6835 ;
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -31,6 +31,19 @@ app.get ('/customer', function (req,res){
 app.get('/product', function (req,res){
 	res.render ('product');
 });
+
+
+app.get ('/component', function (req, res){
+	res.render ('component');
+});
+
+app.get ('/order', function (req, res) {
+	res.render ('order');
+});
+
+
+
+
 app.get ('/manufacturer-insert', function (req, res, next) {
 // if (req.query.mname != '') 
 var context ={};

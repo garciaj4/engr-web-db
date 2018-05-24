@@ -40,6 +40,10 @@ app.get ('/order', function (req, res) {
 	res.render ('order');
 });
 
+app.get ('/component_product', function (req, res) {
+	res.render ('component_product');
+});
+
 app.get('/manufacturer', function(req, res){
 	data = {};
 	connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){

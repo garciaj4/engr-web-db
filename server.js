@@ -31,19 +31,6 @@ app.get ('/customer', function (req,res){
 app.get('/product', function (req,res){
 	res.render ('product');
 });
-app.get ('/manufacturer-insert', function (req, res, next) {
-// if (req.query.mname != '') 
-var context ={};
-var inserts = [req.body.mname, req.body.mphone, req.body.mzip, req.body.mdiscount, req.body.mpreferred];
-mysql.connection.query ('INSERT INTO Manufacturer (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacurer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)', inserts, function (err, results) {
- if (err) {
-next (err);
-return;
-} 
- res.render ('manufacturer');
-
-});
-});
 
 app.get('/manufacturer', function(req, res){
 	data = {};
@@ -57,6 +44,27 @@ app.get('/manufacturer', function(req, res){
 		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});
 
+});
+
+app.get ('/manufacturer-insert', function (req, res) {
+	connection.query ('INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)',
+	[req.query.name, req.query.phone, req.query.zip, req.query.discount, req.query.preferred],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert a Manufacturer.");
+			return;
+		}
+		connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){
+			data.manufacturers = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Manufacturers rows from db.");
+				return;
+			}
+			res.render('manufacturer', {manufacturer: data.manufacturers});
+		});
+	});
 });
 
 app.get('/manufacturer-delete', function(req, res, next){

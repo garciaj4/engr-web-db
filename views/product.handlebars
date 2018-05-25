@@ -20,20 +20,35 @@
     </fieldset>
 </form>
 
-  
-
-<br>
-<h4> Here are all the product records, edit or delete records if needed </h4>
-<table id="Product_table" >
+<h2> Here are all the product records, edit or delete records if needed </h2>
+<table id="product_table">
     <thead>
-        <tr border="1px">
+        <tr>
             <th>Name</th>
-            <th>Description</th>
-            <th>Cost</th>
-            <th>Price</th>
-            <th> <input type="submit" id="product_edit" value = "edit"> </th>
-            <th> <input type="submit" id="product_delete" value = "delete"> </th>
+            <th>Discount</th>
+            <th>Preferred Vendor</th>
+            <th>Phone</th>
+            <th>Zip Code</th>
         </tr>
     </thead>
+    <tbody id="manufacturer_table_body">
+        {{#product}}
+        <tr>
+            <td id="man{{this.Product_id}}_id" style="display:none;">{{this.Product_id}}</td>
+            <td> <input id="man{{this.Product_id}}_name" value="{{this.Product_name}}"></td>
+            <td> <input id="man{{this.Product_id}}_description" value="{{this.Product_description}}"> </td>
+            <td> <input id="man{{this.Product_id}}_cost" value="{{this.Product_cost}}"> </td>
+            <td> <input id="man{{this.Product_id}}_zip" value="{{this.Product_price}}"> </td>
+            <td id="man{{this.Product_id}}_delete">
+              <a href="javascript:deleteProduct({{this.Product_id}});">
+              Delete</a></td>
+            <td id="man{{this.Product_id}}_edit">
+              <a href="javascript:updateProduct({{this.Product_id}});">
+              Update</a>
+            </td>
+        </tr>
+        {{/product}}
+    </tbody>
+</table>
 
    

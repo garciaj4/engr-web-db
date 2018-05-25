@@ -25,16 +25,32 @@ app.get('/home', function(req, res){
 });
 
 app.get ('/customer', function (req,res){
-	res.render ('customer');
+	data={};
+	connection.query('SELECT * FROM Customers', function(err, rows, fields){
+		data.customers=rows;
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to retrieve Customers from db.");
+		}
+		res.render ('customer', {customer:data.customers});
+	});
 });
 
 app.get('/product', function (req,res){
-	res.render ('product');
+	data={};
+	connection.query('SELECT * FROM Products', function(err, rows, fields){
+		data.products=rows;
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to retrieve Products from db.");
+		}
+		res.render ('product', {product:data.products});
+	});
 });
 
 app.get ('/component', function (req, res){
 	data={};
-	connection.query('SELECT * FROM Components', function(err, rows, fieldsw){
+	connection.query('SELECT * FROM Components', function(err, rows, fields){
 		data.components=rows;
 		if(err){
 			console.log(err);
@@ -42,7 +58,6 @@ app.get ('/component', function (req, res){
 		}
 		res.render ('component', {component:data.components});
 	});
-	
 });
 
 app.get('/component-delete', function(req, res){

@@ -22,18 +22,34 @@
     </fieldset>
 </form>
 
-<br>
-<h4> Here are all the customer records, edit or delete records if needed </h4>
-<table id="customer_table" >
+<h2> Here are all the customer records, edit or delete records if needed </h2>
+<table id="customer_table">
     <thead>
-        <tr border="1px">
+        <tr>
             <th>Name</th>
             <th>Phone</th>
             <th>Street</th>
             <th>City</th>
-            <th>Zip</th>
-            <th> <input type="submit" id="customer_edit" value = "edit"> </th>
-            <th> <input type="submit" id="customer_delete" value = "delete"> </th>
+            <th>Zip Code</th>
         </tr>
     </thead>
-
+    <tbody id="customer_table_body">
+        {{#customer}}
+        <tr>
+            <td id="man{{this.Customer_id}}_id" style="display:none;">{{this.Customer_id}}</td>
+            <td> <input id="man{{this.Customer_id}}_name" value="{{this.Customer_name}}"></td>
+            <td> <input id="man{{this.Customer_id}}_phone" value="{{this.Customer_phone}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_phone" value="{{this.Customer_street}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_zip" value="{{this.Customer_city}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_zip" value="{{this.Customer_zip}}"> </td>
+            <td id="man{{this.Customer_id}}_delete">
+              <a href="javascript:deleteCustomer({{this.Customer_id}});">
+              Delete</a></td>
+            <td id="man{{this.Customer_id}}_edit">
+              <a href="javascript:updateCustomer({{this.Customer_id}});">
+              Update</a>
+            </td>
+        </tr>
+        {{/customer}}
+    </tbody>
+</table>

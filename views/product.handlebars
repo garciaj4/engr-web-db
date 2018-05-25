@@ -25,10 +25,9 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Discount</th>
-            <th>Preferred Vendor</th>
-            <th>Phone</th>
-            <th>Zip Code</th>
+            <th>Description</th>
+            <th>Cost</th>
+            <th>Price</th>
         </tr>
     </thead>
     <tbody id="manufacturer_table_body">
@@ -38,7 +37,7 @@
             <td> <input id="man{{this.Product_id}}_name" value="{{this.Product_name}}"></td>
             <td> <input id="man{{this.Product_id}}_description" value="{{this.Product_description}}"> </td>
             <td> <input id="man{{this.Product_id}}_cost" value="{{this.Product_cost}}"> </td>
-            <td> <input id="man{{this.Product_id}}_zip" value="{{this.Product_price}}"> </td>
+            <td> <input id="man{{this.Product_id}}_price" value="{{this.Product_price}}"> </td>
             <td id="man{{this.Product_id}}_delete">
               <a href="javascript:deleteProduct({{this.Product_id}});">
               Delete</a></td>
@@ -50,5 +49,3 @@
         {{/product}}
     </tbody>
 </table>
-https://github.com/garciaj4/engr-web-db.git
-   

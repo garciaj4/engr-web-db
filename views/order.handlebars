@@ -36,13 +36,37 @@
     </fieldset>
 </form>
 
-<h4> Here are all the orders records, edit or delete records if needed </h4>
-<table id="orders_table" >
+<h2> Here are the Products associated with each Order. </h2>
+<table id="order_table">
     <thead>
-        <tr border="1px">
-            <th>Status</th>
-            <th>Date Created</th>
-            <th>Date Fullfilled</th>
-            <th>Customer_id</th>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Date Placed</th>
+            <th>Date Fulfilled</th>
+            <th>Order Status</th>
+            <th>Prodcut Name</th>
+            <th>Quantity</th>
         </tr>
     </thead>
+    <tbody id="order_table_body">
+        {{#order}}
+        <tr>
+            <td id="order{{this.Order_id}}_id">{{this.Order_id}}</td>
+            <td> <input id="order{{this.Order_id}}_cName" value="{{this.Customer_name}}"></td>
+            <td> <input id="order{{this.Order_id}}_pDate" value="{{this.Order_dateCreated}}"> </td>
+            <td> <input id="order{{this.Order_id}}_fDate" value="{{this.Order_dateFulfilled}}"> </td>
+            <td> <input id="order{{this.Order_id}}_oStatus" value="{{this.Order_status}}"> </td>
+            <td> <input id="order{{this.Order_id}}_pName" value="{{this.Product_name}}"> </td>
+            <td> <input id="order{{this.Order_id}}_pQty" value="{{this.Product_quantity}}"> </td>
+            <td id="order{{this.Order_id}}_delete">
+              <a href="javascript:deleteOrder(order{{this.Order_id}});">
+              Delete</a></td>
+            <td id="order{{this.Order_id}}_edit">
+              <a href="javascript:updateOrder(order{{this.Order_id}});">
+              Update</a>
+            </td>
+        </tr>
+        {{/order}}
+    </tbody>
+</table>

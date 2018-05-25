@@ -69,12 +69,30 @@ app.get('/component-delete', function(req, res){
 	});
 });
 
-app.get ('/order', function (req, res) {
-	res.render ('order');
+app.get ('/component_product', function (req, res) {
+	data = {};
+	connection.query('SELECT * FROM Components_Products cp INNER JOIN Products p ON cp.pid = p.Product_id INNER JOIN Components c ON cp.cid = c.Component_id',
+		function(err, rows, fields){
+			data.components_products = rows;
+			if(err){
+				console.log(err);
+				console.log("Something went wrong pulling the Component/Product Association.");
+			}
+			res.render('component_product', {cp:data.components_products});
+		});
 });
 
-app.get ('/component_product', function (req, res) {
-	res.render ('component_product');
+app.get ('/order', function (req, res) {
+	data = {};
+	connection.query('SELECT * FROM Orders_Products op INNER JOIN Orders o ON op.oid = o.Order_id INNER JOIN Customers c ON o.Order_Customer_id = c.Customer_id INNER JOIN Products p ON op.pid = p.Product_id',
+		function(err, rows, fields){
+			data.orders_products = rows;
+			if(err){
+				console.log(err);
+				console.log("Something went wrong pulling the Orders/Product Association");
+			}
+			res.render('order', {order:data.orders_products});
+		});
 });
 
 app.get('/manufacturer', function(req, res){

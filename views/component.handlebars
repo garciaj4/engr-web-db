@@ -1,5 +1,5 @@
-<!doctype html>
-<h1> On this page you can add, delete or edit a Component</h1>
+
+<h1> On this page you can search add or edit a component</h1>
 
 <form>
     <fieldset>
@@ -10,14 +10,21 @@
       Manufacturer tbd <input type ="text">
       Cost: <input id="ccost" type="text" name="ccost"> <br> 
       Lead Time: <input id ="Lead" type="text" name="Lead"> <br>
+      <input type = "submit" value="submit" text = "add">  
     </fieldset>
 </form>
-
+<br>
 <form>
     <fieldset>
       <legend>Search components records:</legend>
       Part Number: <input id="pnumber" type="text" name="pnumber">
-      Manufacturer tbd
+      Manufacturer: <select name="mid">
+      <option> Test Manufacturer1 </option>
+      <option> Test Manufacturer2 </option>
+      <option> Test Manufacturer3 </option>
+      <option> Test Manufacturer4 </option>
+      <option> Test Manufacturer5 </option>
+       <input type = "submit" value="submit" text= "Search">
     </fieldset>
 </form>
 

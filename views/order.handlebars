@@ -1,16 +1,22 @@
 <!doctype html>
-<h2> In this page you can add, delete or edit an Order</h2>
-<h4> You can also display all the orders records and search for specific records </h4>
+<h1> In this page you can search,  add, delete or edit an Order</h1>
+
 <form>
     <fieldset>
       <legend>Add an Order :</legend>
       Status:  <input id="status" type="text" name="status"> <br>
       Date Created:  <input id ="datec" type="text" name="datec"> <br>
       Date Fulfilled:  <input id ="datef" type="text" name="datef"> <br>
-      {{! -- Customer: <select name = "Customer">
-      {{#each Customer}} 
-      <option value=" {{Customer_id}}"> {{name}} </option>
-      </select> <br> --}}
+      <select name = "Customer">	
+      <option> Test customer 1 </option>
+      <option> Test customer 2 </option>
+      <option> Test customer 3 </option>
+      <option> Test customer 4 </option>
+      <option> Test customer 5 </option>
+      <option> Test customer 6 </option>
+      <option> Test customer 7 </option>
+      </select> 
+      <input type = "submit" value="submit" text= "add">
     </fieldset>
 </form>
 
@@ -19,11 +25,17 @@
       <legend>Search Orders:</legend>
       Status:  <input id="status" type="text" name="status"> 
       Date Created:  <input id ="datec" type="text" name="datec"> 
-      Date Fulfilled:  <input id ="datef" type="text" name="datef"> <
-      {{! -- Customer: <select name = "Customer">
-      {{#each Customer}} 
-      <option value=" {{Customer_id}}"> {{name}} </option>
-      </select> <br> --}}
+      Date Fulfilled:  <input id ="datef" type="text" name="datef">
+       <select name = "Customer">	
+      <option> Test customer 1 </option>
+      <option> Test customer 2 </option>
+      <option> Test customer 3 </option>
+      <option> Test customer 4 </option>
+      <option> Test customer 5 </option>
+      <option> Test customer 6 </option>
+      <option> Test customer 7 </option>
+      </select> <br> 
+      <input type= "submit" value ="submit" text= "search">
     </fieldset>
 </form>
 

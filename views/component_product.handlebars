@@ -27,29 +27,15 @@
     <input type="submit" value="Submit" text= "add">
     </form>
 </div>
+<br/>
+<h3> List of Products with their components, you can update and delete this lis </h3>
+<table border = "1px solid">
+    <thead> 
+        <th> Product Name</th> 
+        <th>Component </th> 
+	<th> Update </th>
+	<th> Delete </th>
+    </thead> 
+  
+</table> 
 
-<h2> Here are the Components associated with each Product. </h2>
-<table id="cp_table">
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Component Part Number</th>
-            <th>Quantity</th>
-        </tr>
-    </thead>
-    <tbody id="cp_table_body">
-        {{#cp}}
-        <tr>
-            <td id="cp{{this.cid}}_pid" style="display:none;">{{this.pid}}</td>
-            <td id="cp{{this.cid}}_cid" style="display:none;">{{this.cid}}</td>
-            <td> <input id="c{{this.cid}}p{{this.pid}}_pName" value="{{this.Product_name}}"></td>
-            <td> <input id="c{{this.cid}}p{{this.pid}}_cPartNumber" value="{{this.Component_partNumber}}"> </td>
-            <td> <input id="c{{this.cid}}p{{this.pid}}_cQty" value="{{this.Component_quantity}}"> </td>
-            <td id="c{{this.cid}}p{{this.pid}}_edit">
-              <a href="javascript:updateCP(c{{this.cid}}p{{this.pid}});">
-              Update</a>
-            </td>
-        </tr>
-        {{/cp}}
-    </tbody>
-</table>

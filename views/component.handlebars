@@ -22,18 +22,39 @@
 </form>
 
 <br>
-<h4> Here are all the components records, edit or delete records if needed </h4>
+<h2> Here are all the components records, edit or delete records if needed </h2>
+
 <table id="components_table" >
-    <thead>
-        <tr border="1px">
-            <th>Part Number</th>
-            <th>Type</th>
-            <th>Stock</th>
-            <th>Manufacturer</th>
-            <th>Cost</th>
-            <th>Lead Time</th>
-            <th> <input type="submit" id="customer_edit" value = "edit"> </th>
-            <th> <input type="submit" id="customer_delete" value = "delete"> </th>
-        </tr>
-    </thead>
+  <thead>
+      <tr>
+        <th>Manufacturer</th>
+        <th>Part Number</th>
+        <th>Type</th>
+        <th>Stock</th>
+        <th>Cost</th>
+        <th>Lead Time (weeks)</th>
+    </tr>
+  </thead>
+
+  <tbody id="component_table_body">
+    {{#component}}
+      <tr>
+        <td id="comp{{this.Component_id}}_id" style="display: none;">{{this.Component_id}}</td>
+        <td><input id="comp{{this.Component_id}}_Manufacturer_id" value="{{this.Component_Manufacturer_id}}"></td>
+        <td><input id="comp{{this.Component_id}}_partNumber" value="{{this.Component_partNumber}}"></td>
+        <td><input id="comp{{this.Component_id}}_type" value="{{this.Component_type}}"></td>
+        <td><input id="comp{{this.Component_id}}_stock" value="{{this.Component_stock}}"></td>
+        <td><input id="comp{{this.Component_id}}_cost" value="{{this.Component_cost}}"></td>
+        <td><input id="comp{{this.Component_id}}_leadTime" value="{{this.Component_leadTime}}"></td>
+        <td id="man{{this.Manufacturer_id}}_delete">
+          <a href="javascript:deleteComponent({{this.Component_id}});">
+          Delete</a>
+        </td>
+        <td id="man{{this.Manufacturer_id}}_edit">
+          <a href="javascript:updateComponent({{this.Componenet_id}});">
+          Update</a>
+        </td>
+      </tr>
+    {{/component}}
+  </tbody>
 </table>

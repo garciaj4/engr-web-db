@@ -33,7 +33,25 @@ app.get('/product', function (req,res){
 });
 
 app.get ('/component', function (req, res){
-	res.render ('component');
+	data={};
+	connection.query('SELECT * FROM Components', function(err, rows, fieldsw){
+		data.components=rows;
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to retrieve Components from db.");
+		}
+		res.render ('component', {component:data.components});
+	});
+	
+});
+
+app.get('/component-delete', function(req, res){
+	connection.query('DELETE FROM Components WHERE Component_id=?', [req.query.id], function(err, result){
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to delete entry from Components.");
+		}
+	});
 });
 
 app.get ('/order', function (req, res) {

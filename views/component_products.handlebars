@@ -1,0 +1,41 @@
+
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<div>
+<h3> Add components to a product  </h3>
+    <form id="add_components_products" action="/component_product" method="post">
+    Product: <select name='pid'>
+    <option> Test Product1 </option>
+    <option> Test Product2 </option>   
+    <option> Test Product3 </option>
+    <option> Test Product4 </option>
+    <option> Test Product5 </option>
+    </select>
+    
+    Components :<sup>Multi-select</sup> <select multiple name="components"> 
+    <option> Test component1 </option>     
+    <option> Test component2 </option>
+    <option> Test component3 </option>
+    <option> Test component4 </option>
+    <option> Test component5 </option>
+    <option> Test component6 </option>
+    <option> Test component7 </option>
+    <<option> Test component8 </option>
+</select><br>
+    <input type="submit" value="Submit" text= "add">
+    </form>
+</div>
+<br/>
+<h3> List of Products with their components, you can update and delete this lis </h3>
+<table border = "1px solid">
+    <thead> 
+        <th> Product Name</th> 
+        <th>Component </th> 
+	<th> Update </th>
+	<th> Delete </th>
+    </thead> 
+  
+</table> 
+

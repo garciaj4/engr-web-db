@@ -98,6 +98,15 @@ app.get ('/order', function (req, res) {
 		});
 });
 
+app.get('/order-delete', function(req, res){
+	connection.query('DELETE FROM Orders_Products WHERE oid=? AND pid=?', [req.query.oid, req.query.pid], function(err, result){
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to delete entry from Components.");
+		}
+	});
+});
+
 app.get('/manufacturer', function(req, res){
 	data = {};
 	connection.query('SELECT * FROM Manufacturers', function(err, rows, fields){

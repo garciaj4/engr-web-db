@@ -84,22 +84,24 @@ function updateManufacturer(id){
 //________________________________Componenet Functions__________________________________________________________________________
 //*********************************************************************************************************************************
 
-function deleteComponent(id){
-	req = new XMLHttpRequest();
 
-	var URL = "/component-delete"
-	+ "?id=" + id;
+function deleteOrder(oid, pid){
+	var req = new XMLHttpRequest();
+
+	var URL = "/order-delete"
+	+ "?oid=" + oid
+	+ "&pid=" + pid;
 
 	req.open("GET", URL, true);
 
 	req.addEventListener('load', function(){
-		if(req.status >= 200 || req.status < 400){
-			console.log("Successfull deleteComponent.");
+		if (req.status >= 200 && req.status < 400) {
+			console.log("Successfull order delete");
 		}else{
-			console.log("Error in network request: " + request.statusTest);
+			console.log("Error in netweork request: " + request.statusTest);
 		}
-		location.reload(true);
 	});
 
 	req.send(null);
+	location.reload(true);
 }

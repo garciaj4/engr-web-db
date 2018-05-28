@@ -91,6 +91,7 @@ app.get ('/order', function (req, res) {
 				console.log(err);
 				console.log("Something went wrong pulling the Orders/Product Association");
 			}
+			console.log(rows);
 			res.render('order', {order:data.orders_products});
 		});
 });

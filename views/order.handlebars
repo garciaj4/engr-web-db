@@ -1,21 +1,13 @@
 <!doctype html>
 <h1> In this page you can search,  add, delete or edit an Order</h1>
 
-<form>
+<form id=" add-order-form" action= "orders-insert" method="GET">
     <fieldset>
       <legend>Add an Order :</legend>
-      Status:  <input id="status" type="text" name="status"> <br>
+      Status:  <input id="ostatus" type="text" name="ostatus"> <br>
       Date Created:  <input id ="datec" type="text" name="datec"> <br>
       Date Fulfilled:  <input id ="datef" type="text" name="datef"> <br>
-      <select name = "Customer">	
-      <option> Test customer 1 </option>
-      <option> Test customer 2 </option>
-      <option> Test customer 3 </option>
-      <option> Test customer 4 </option>
-      <option> Test customer 5 </option>
-      <option> Test customer 6 </option>
-      <option> Test customer 7 </option>
-      </select> 
+      Customer: <input id="customer" type= "number"  name = "customer">	
       <input type = "submit" value="submit" text= "add">
     </fieldset>
 </form>

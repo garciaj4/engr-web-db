@@ -1,6 +1,5 @@
 var express = require('express');
-
-var port = process.env.PORT || 5418 ;
+var port = process.env.PORT ||6835 ;
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -18,8 +17,6 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res){
-
-	console.log("You're home.");
 	res.render('home');
 });
 
@@ -121,22 +118,6 @@ app.get('/manufacturer', function(req, res){
 
 });
 
-app.get('/manufacturer-search', function(req, res){
-	data = {};
-	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_name LIKE ?',
-		'%' + req.query.name + '%',
-		function(err, rows, fields){
-			data.manufacturers = rows;
-			if(err){
-				console.log(err);
-				console.log("Something has gone wrong trying to search Manufacturers rows from db.");
-				return;
-			}
-		res.render('manufacturer', {manufacturer: data.manufacturers});
-	});
-
-});
-
 app.get ('/manufacturer-insert', function (req, res) {
 	connection.query ('INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)',
 	[req.query.name, req.query.phone, req.query.zip, req.query.discount, req.query.preferred],
@@ -179,6 +160,96 @@ app.get('/manufacturer-update', function(req, res, next){
 			}
 		});
 });
+
+
+app.get ('/customer-insert', function (req, res) {
+	connection.query ('INSERT INTO Customers (`Customer_name`, `Customer_phone`, `Customer_street`, `Customer_city`, `Customer_zip`) VALUES (?,?,?,?,?)',
+	[req.query.cname, req.query.cphone, req.query.cstreet, req.query.ccity, req.query.czip],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert a Customer.");
+			return;
+		}
+		connection.query('SELECT * FROM Customers', function(err, rows, fields){
+			data.customers = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Customer rows from db.");
+				return;
+			}
+			res.render('customer', {customer: data.customers});
+		});
+	});
+});
+
+
+app.get ('/component-insert', function (req, res) {
+	connection.query ('INSERT INTO Components (`Component_partNumber`, `Component_type`, `Component_stock`, `Component_Manufacturer_id`, `Component_cost`, `Component_leadTime` ) VALUES (?,?,?,?,?, ?)',
+	[req.query.cpartNumber, req.query.ctype, req.query.cstock, req.query.cmanufacturerId, req.query.ccost, req.query.cleadTime],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert a Component.");
+			return;
+		}
+		connection.query('SELECT * FROM Components', function(err, rows, fields){
+			data.components = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Components rows from db.");
+				return;
+			}
+			res.render('component', {component: data.components});
+		});
+	});
+});
+
+
+ app.get ('/products-insert', function (req, res) {
+	connection.query ('INSERT INTO Products (`Product_name`, `Product_description`, `Product_cost`, `Product_price` ) VALUES (?,?,?,?)',
+	[req.query.pname, req.query.pdescription, req.query.pcost, req.query.pprice],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert a Product.");
+			return;
+		}
+		connection.query('SELECT * FROM Products', function(err, rows, fields){
+			data.products = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Products rows from db.");
+				return;
+			}
+			res.render('product', {product: data.products});
+		});
+	});
+});
+
+
+
+ app.get ('/orders-insert', function (req, res) {
+	connection.query ('INSERT INTO Orders (`Order_status`, `Order_dateCreated`, `Order_dateFulfilled`, `Order_Customer_id` ) VALUES (?,?,?,?)',
+	[req.query.ostatus, req.query.datec, req.query.datef, req.query.customer],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert an Order.");
+			return;
+		}
+		connection.query('SELECT * FROM Orders', function(err, rows, fields){
+			data.orders = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Products rows from db.");
+				return;
+			}
+			res.render('order', {order: data.orders});
+		});
+	});
+});
+
 
 app.use(function(req, res){
 	res.status(404);

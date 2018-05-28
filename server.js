@@ -111,18 +111,15 @@ app.get('/manufacturer', function(req, res){
 
 app.get('/manufacturer-search', function(req, res){
 	data = {};
-	console.log('%' + req.query.name + '%');
 	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_name LIKE ?',
 		'%' + req.query.name + '%',
 		function(err, rows, fields){
-			console.log(rows);
 			data.manufacturers = rows;
 			if(err){
 				console.log(err);
 				console.log("Something has gone wrong trying to search Manufacturers rows from db.");
 				return;
 			}
-		console.log(rows);
 		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});
 

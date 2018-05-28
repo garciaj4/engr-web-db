@@ -112,6 +112,22 @@ app.get('/manufacturer', function(req, res){
 
 });
 
+app.get('/manufacturer-search', function(req, res){
+	data = {};
+	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_name LIKE ?',
+		'%' + req.query.name + '%',
+		function(err, rows, fields){
+			data.manufacturers = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to search Manufacturers rows from db.");
+				return;
+			}
+		res.render('manufacturer', {manufacturer: data.manufacturers});
+	});
+
+});
+
 app.get ('/manufacturer-insert', function (req, res) {
 	connection.query ('INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)',
 	[req.query.name, req.query.phone, req.query.zip, req.query.discount, req.query.preferred],

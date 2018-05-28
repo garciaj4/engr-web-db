@@ -24,6 +24,7 @@ function deleteManufacturer(id){
 function updateManufacturer(id){
 
 	//Data validation and formatting.
+	//needs updated and extended and could do expression formatting
 	if(document.getElementById("man"+id+"_name").value.length < 255){
 		var name = document.getElementById("man"+id+"_name").value;
 	}else{

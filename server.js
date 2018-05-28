@@ -116,7 +116,6 @@ app.get('/manufacturer', function(req, res){
 		}
 		res.render('manufacturer', {manufacturer: data.manufacturers});
 	});
-
 });
 
 app.get ('/manufacturer-insert', function (req, res) {
@@ -162,6 +161,20 @@ app.get('/manufacturer-update', function(req, res, next){
 		});
 });
 
+app.get('/manufacturer-search', function(req, res){
+	data = {};
+	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_name LIKE ?',
+	'%' + req.query.name + '%', 
+	function(err, rows, fields){
+		data.manufacturers = rows;
+		if(err){
+			console.log(err);
+			console.log("Something has gone wrong trying to retrieve Manufacturers rows from db.");
+			return;
+		}
+		res.render('manufacturer', {manufacturer: data.manufacturers});
+	});
+});
 
 app.get ('/customer-insert', function (req, res) {
 	connection.query ('INSERT INTO Customers (`Customer_name`, `Customer_phone`, `Customer_street`, `Customer_city`, `Customer_zip`) VALUES (?,?,?,?,?)',

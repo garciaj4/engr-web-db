@@ -152,6 +152,21 @@ app.get('/manufacturer-update', function(req, res, next){
 		});
 });
 
+app.post ('/manufacturer-insert', function (req, res){
+var inserts = [req.body.mname, req.body.mphone, req.body.mzip];
+connection.query ("INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`) VALUES (?,?,?,?)", inserts, function (err, result){
+if (err){
+ console.log (err);
+console.log ("something went wrong trying to insert a Manufacturer");
+return;
+}else{
+res.redirect ('/manufacturer');
+}
+});
+});
+
+
+
 app.use(function(req, res){
 	res.status(404);
 	res.render('404');

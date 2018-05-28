@@ -1,5 +1,6 @@
 var express = require('express');
-var port = process.env.PORT ||6835 ;
+
+var port = process.env.PORT || 5418 ;
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -17,6 +18,8 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res){
+
+	console.log("You're home.");
 	res.render('home');
 });
 

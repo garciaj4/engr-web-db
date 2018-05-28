@@ -1,15 +1,15 @@
 
 <h1> On this page you can search add or edit a component</h1>
 
-<form>
+<form id= "add-component-form" action="component-insert" method= "GET" >
     <fieldset>
       <legend>Add a Component:</legend>
-      Part Number:  <input id="pnumber" type="text" name="pnumber"> <br>
+      Part Number:  <input id="cpartNumber" type="text" name="cpartNumber"> <br>
       Type:  <input id ="ctype" type="text" name="ctype"> <br>
       Stock: <input id="cstock" type="number" name="cstock"> <br>  
-      Manufacturer tbd <input type ="text">
+      Manufacturer:  <input id= "cmanufacturerId" type="number" name="cmanufacturerId"> <br>
       Cost: <input id="ccost" type="text" name="ccost"> <br> 
-      Lead Time: <input id ="Lead" type="text" name="Lead"> <br>
+      Lead Time: <input id ="cleadTime" type="number" name="cleadTime"> <br>
       <input type = "submit" value="submit" text = "add">  
     </fieldset>
 </form>

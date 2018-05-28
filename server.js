@@ -1,5 +1,6 @@
 var express = require('express');
-var port = process.env.PORT ||6835 ;
+
+var port = process.env.PORT || 5418 ;
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -17,6 +18,8 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.get('/', function(req, res){
+
+	console.log("You're home.");
 	res.render('home');
 });
 
@@ -109,6 +112,22 @@ app.get('/manufacturer', function(req, res){
 
 });
 
+app.get('/manufacturer-search', function(req, res){
+	data = {};
+	connection.query('SELECT * FROM Manufacturers WHERE Manufacturer_name LIKE ?',
+		'%' + req.query.name + '%',
+		function(err, rows, fields){
+			data.manufacturers = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to search Manufacturers rows from db.");
+				return;
+			}
+		res.render('manufacturer', {manufacturer: data.manufacturers});
+	});
+
+});
+
 app.get ('/manufacturer-insert', function (req, res) {
 	connection.query ('INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)',
 	[req.query.name, req.query.phone, req.query.zip, req.query.discount, req.query.preferred],
@@ -151,21 +170,6 @@ app.get('/manufacturer-update', function(req, res, next){
 			}
 		});
 });
-
-app.post ('/manufacturer-insert', function (req, res){
-var inserts = [req.body.mname, req.body.mphone, req.body.mzip];
-connection.query ("INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`) VALUES (?,?,?,?)", inserts, function (err, result){
-if (err){
- console.log (err);
-console.log ("something went wrong trying to insert a Manufacturer");
-return;
-}else{
-res.redirect ('/manufacturer');
-}
-});
-});
-
-
 
 app.use(function(req, res){
 	res.status(404);

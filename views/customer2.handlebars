@@ -1,0 +1,53 @@
+<!doctype html>
+<h1> On this page you can search add or edit a customer</h1>
+
+<form id = "add-customer-form" action= "customer-insert" method = "GET">
+    <fieldset>
+      <legend>Add a Customer:</legend>
+      Name:  <input id="cname" type="text" name="cname"> <br>
+      Phone Number:  <input id ="cphone" type="text" name="cphone"> <br>
+      Adress Street: <input id="cstreet" type="text" name="cstreet"> <br> 
+      City: <input id="ccity" type="text" name="ccity"> <br> 
+      Zip: <input id ="czip" type="text" name="czip"> <br>
+      <input type="submit" value= "submit" text= "add">
+    </fieldset>
+</form>
+<br>
+<form>
+    <fieldset>
+      <legend>Search client records:</legend>
+      Name: <input id="cname" type="text" name="cname">
+      Zip: <input id ="czip" type="text" name="czip">
+      City: <input id ="ccity" type="text" name="ccity">
+      <input type="submit" id="customer_search" value = "search"> 
+    </fieldset>
+</form>
+
+<h2> Here are all the customer records, edit or delete records if needed </h2>
+<table id="customer_table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Zip Code</th>
+        </tr>
+    </thead>
+    <tbody id="customer_table_body">
+        {{#customer}}
+        <tr>
+            <td id="man{{this.Customer_id}}_id" style="display:none;">{{this.Customer_id}}</td>
+            <td> <input id="man{{this.Customer_id}}_name" value="{{this.Customer_name}}"></td>
+            <td> <input id="man{{this.Customer_id}}_phone" value="{{this.Customer_phone}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_phone" value="{{this.Customer_street}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_zip" value="{{this.Customer_city}}"> </td>
+            <td> <input id="man{{this.Customer_id}}_zip" value="{{this.Customer_zip}}"> </td>
+            <td id="man{{this.Customer_id}}_edit">
+              <a href="javascript:updateCustomer({{this.Customer_id}});">
+              Update</a>
+            </td>
+        </tr>
+        {{/customer}}
+    </tbody>
+</table>

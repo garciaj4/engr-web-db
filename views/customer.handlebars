@@ -1,27 +1,77 @@
 <!doctype html>
 <h1> On this page you can search add or edit a customer</h1>
 
-<form id = "add-customer-form" action= "customer-insert" method = "GET">
-    <fieldset>
-      <legend>Add a Customer:</legend>
-      Name:  <input id="cname" type="text" name="cname"> <br>
-      Phone Number:  <input id ="cphone" type="text" name="cphone"> <br>
-      Adress Street: <input id="cstreet" type="text" name="cstreet"> <br> 
-      City: <input id="ccity" type="text" name="ccity"> <br> 
-      Zip: <input id ="czip" type="text" name="czip"> <br>
-      <input type="submit" value= "submit" text= "add">
-    </fieldset>
+
+<fieldset>
+<legend > Add a customer: </legend>
+<form class="form-horizontal" id = "add-customer-form" action= "customer-insert" method="GET">
+
+  
+  <div class="form-group">
+    <label for="cname" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cname" name ="cname" placeholder="Customer Name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="cphone" class="col-sm-2 control-label">Phone Number</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cphone" name ="cphone" placeholder="Customer Phone">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="cstreet" class="col-sm-2 control-label">Adress Street</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cstreet" name ="cstreet" placeholder="123 Evergreen Ln">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="ccity" class="col-sm-2 control-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ccity" name ="ccity" placeholder="Springfield">
+    </div>
+  </div>
+  
+    <div class="form-group">
+    <label for="czip" class="col-sm-2 control-label">Zip</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="czip" name ="czip" placeholder="55555">
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"> Add Customer </button>
+    </div>
+  </div>
 </form>
+</fieldset>
+
+
+
+<fieldset>
+<legend mar> Search customer records: </legend>
+<form class="form-horizontal" id = "add-product" action="products-insert" method="GET">
+  <div class="form-group">
+    <label for="name"  class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cname" name= "cname" placeholder="Customer Name">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="customer_search" value = "search" class="btn btn-default"> Search Customer </button>
+    </div>
+  </div>
+</form>
+</fieldset>
 <br>
-<form>
-    <fieldset>
-      <legend>Search client records:</legend>
-      Name: <input id="cname" type="text" name="cname">
-      Zip: <input id ="czip" type="text" name="czip">
-      City: <input id ="ccity" type="text" name="ccity">
-      <input type="submit" id="customer_search" value = "search"> 
-    </fieldset>
-</form>
+
 
 <h2> Here are all the customer records, edit or delete records if needed </h2>
 <table id="customer_table">

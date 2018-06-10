@@ -1,13 +1,13 @@
 <!doctype html>
 <h1> On this page you can search,  add or edit a manufacturer</h1>
-
+<div = "container"
 <form id ="add-manufacturer-form" action="manufacturer-insert" method="GET">
 	<fieldset>
 		<legend>Add a Manufacturer:</legend>
-	  Name:<input id="mname" type="text" name="name"> <br>
-		Phone Number:<input id ="mphone" type="text" name="phone"> <br>
-		Zip: <input id ="mzip" type="text" name="zip"> <br>
-		Discount: <input id="mdiscount" type="number" min="0" max="1" step="0.01" name="discount"> <br>
+	        Name:<br> <input id="mname" type="text" name="name"> <br>
+		Phone Number:<br> <input id ="mphone" type="text" name="phone"> <br>
+		Zip:<br> <input id ="mzip" type="text" name="zip"> <br>
+		Discount:<br> <input id="mdiscount" type="number" min="0" max="1" step="0.01" name="discount"> <br>
     Preferred:
       <br>
       <input id="preferred_true" type="radio" name="preferred" value="true" />Yes</label>
@@ -16,7 +16,7 @@
     <input type="submit" value="submit">
   </fieldset>
 </form>
-
+</div>
 <form id="manufacturer-search" action="manufacturer-search" method="GET">
 	<fieldset>
 	<legend> Search manufacturer records: </legend>

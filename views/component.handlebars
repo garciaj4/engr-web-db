@@ -1,36 +1,89 @@
-
 <h1> On this page you can search add or edit a component</h1>
 
-<form id= "add-component-form" action="component-insert" method= "GET" >
-    <fieldset>
-      <legend>Add a Component:</legend>
-      Part Number:  <input id="cpartNumber" type="text" name="cpartNumber"> <br>
-      Type:  <input id ="ctype" type="text" name="ctype"> <br>
-      Stock: <input id="cstock" type="number" name="cstock"> <br>  
-      Manufacturer:  <input id= "cmanufacturerId" type="number" name="cmanufacturerId"> <br>
-      Cost: <input id="ccost" type="text" name="ccost"> <br> 
-      Lead Time: <input id ="cleadTime" type="number" name="cleadTime"> <br>
-      <input type = "submit" value="submit" text = "add">  
-    </fieldset>
+<fieldset>
+<legend > Add a Component: </legend>
+<form class="form-horizontal" id= "add-component-form" action="component-insert" method="GET">
+  
+  <div class="form-group">
+    <label for="cpartNumber" class="col-sm-2 control-label">Part Number</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="cpartNumber" name="cpartNumber" placeholder="Part Number">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ctype" class="col-sm-2 control-label">Type</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ctype" name="ctype" placeholder="Cable, Switch, Light etc">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mid" class="col-sm-2 control-label">Manufacturer</label>
+    <div class="col-sm-10">
+      <select name="mid">
+        {{#each dropdown}}
+          <option value='{{Manufacturer_id}}'>{{Manufacturer_name}}</option>
+        {{/each}}
+    </select>
+    </div>
+  </div>
+
+   <div class="form-group">
+    <label for="cstock" class="col-sm-2 control-label">Stock</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="cstock" name="cstock" placeholder="Amount in Stock">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ccost" class="col-sm-2 control-label">Cost</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="ccost" name="ccost" placeholder="Component cost">
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label for="cleadTime" class="col-sm-2 control-label">Lead Time</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="cleadTime" name="cleadTime" placeholder="Lead time in weeks">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"> Add Component </button>
+    </div>
+  </div>
 </form>
+</fieldset>
+
+
+<fieldset>
+<legend > Search component : </legend>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="name"  class="col-sm-2 control-label">Part number</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="pnumber" name= "pnumber" placeholder="Part Number">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"> Search Product </button>
+    </div>
+  </div>
+</form>
+</fieldset>
 <br>
-<form>
-    <fieldset>
-      <legend>Search components records:</legend>
-      Part Number: <input id="pnumber" type="text" name="pnumber">
-      Manufacturer: <select name="mid">
-      <option> Test Manufacturer1 </option>
-      <option> Test Manufacturer2 </option>
-      <option> Test Manufacturer3 </option>
-      <option> Test Manufacturer4 </option>
-      <option> Test Manufacturer5 </option>
-       <input type = "submit" value="submit" text= "Search">
-    </fieldset>
-</form>
+
 
 <br>
-<h2> Here are all the components records, edit or delete records if needed </h2>
 
+<fieldset> 
+  <legend> Here are all the component records. You can edit them if needed </legend>
+  <p> To edit a component enter the new information in the text box and click update. </p>
 <table id="components_table" >
   <thead>
       <tr>
@@ -61,3 +114,4 @@
     {{/component}}
   </tbody>
 </table>
+

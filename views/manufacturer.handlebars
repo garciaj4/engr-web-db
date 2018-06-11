@@ -1,33 +1,77 @@
 <!doctype html>
-<h1> On this page you can search,  add or edit a manufacturer</h1>
-<div = "container"
-<form id ="add-manufacturer-form" action="manufacturer-insert" method="GET">
-	<fieldset>
-		<legend>Add a Manufacturer:</legend>
-	        Name:<br> <input id="mname" type="text" name="name"> <br>
-		Phone Number:<br> <input id ="mphone" type="text" name="phone"> <br>
-		Zip:<br> <input id ="mzip" type="text" name="zip"> <br>
-		Discount:<br> <input id="mdiscount" type="number" min="0" max="1" step="0.01" name="discount"> <br>
-    Preferred:
-      <br>
-      <input id="preferred_true" type="radio" name="preferred" value="true" />Yes</label>
-      <input id="preferred_false" type="radio" name="preferred" value="false" />No </label>
-      <br>
-    <input type="submit" value="submit">
-  </fieldset>
+<h1> On this page you can search, add or edit a manufacturer</h1>
+
+
+<fieldset>
+<legend > Add a manufacturer: </legend>
+<form class="form-horizontal" id ="add-manufacturer-form" action="manufacturer-insert" method="GET">
+
+  <div class="form-group">
+    <label for="mname" class="col-sm-2 control-label"> Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="mname" name ="name" placeholder="Name">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mphone" class="col-sm-2 control-label"> Phone </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="mphone" name ="phone" placeholder="888-888-8888">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="zip" class="col-sm-2 control-label"> Zip </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="mzip" name ="zip" placeholder="55555">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="mdiscount" class="col-sm-2 control-label">Discount</label>
+    <div class="col-sm-2">
+      <input type="number" min="0" max="1" step="0.01" class="form-control" id="mdiscount" name="discount" placeholder="0 - 1">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <label for="mdiscount" class="col-sm-2 control-label">Preferred</label>
+    <div class="col-sm-2">
+      <input id="preferred_true" type="radio" name="preferred" value="true" > <label> Yes</label>
+      <input id="preferred_false" type="radio" name="preferred" value="false"> <label> No </label>
+    </div>
+  </div>
+
+ <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"> Add Manufacturer </button>
+    </div>
+  </div>
 </form>
-</div>
-<form id="manufacturer-search" action="manufacturer-search" method="GET">
-	<fieldset>
-	<legend> Search manufacturer records: </legend>
-	Name: <input id= "search_name" type= "text" name="name">
-	<input type= "submit" id = man_search" value = "search">
 </fieldset>
-</form> 
 
-<br />
 
-<h2> Here are all the manufacturer records, edit or delete records if needed </h2>
+<fieldset>
+<legend mar> Search manufacturer records: </legend>
+<form class="form-horizontal" id="manufacturer-search" action="manufacturer-search" method="GET">
+  <div class="form-group">
+    <label for="name"  class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="search_name" name= "name" placeholder="Manufacturer Name">
+    </div>
+  </div>
+
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" id="customer_search" value = "search" class="btn btn-default"> Search Manufacturer </button>
+    </div>
+  </div>
+</form>
+</fieldset>
+<br>
+
+  <legend> Here are all the product records. You can edit them if needed </legend>
+  <p> To edit a product enter the new information in the text box and click update. </p>
 <table id="manufacturer_table">
     <thead>
         <tr>
@@ -61,4 +105,3 @@
         {{/manufacturer}}
     </tbody>
 </table>
-

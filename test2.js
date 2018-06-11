@@ -39,9 +39,10 @@ app.get ('/customer', function (req,res){
 		if(err){
 			console.log(err);
 			console.log("Something went wrong trying to retrieve Customers from db.");
-		} });
-
-		res.render ('customer', {customer:data.customer});
+		}
+		console.log (data.customers);
+		res.render ('customer', {customer:data.customers});
+	});
 	});
 
 app.get ('/customer-insert', function (req, res) {
@@ -161,7 +162,7 @@ app.get ('/component-insert', function (req, res) {
 				console.log("Something has gone wrong trying to retrieve Components rows from db.");
 				return;
 			}
-			res.render('component', {component: data.components});
+			res.redirect('component');
 		});
 	});
 });
@@ -183,8 +184,11 @@ COMPONENT-PRODUCT ENTITY
 	-Update
 ****************************/
 
+
 app.get ('/component_product', function (req, res) {
 	data = {};
+	data1 ={};
+	data2 = {};
 	connection.query('SELECT * FROM Components_Products cp INNER JOIN Products p ON cp.pid = p.Product_id INNER JOIN Components c ON cp.cid = c.Component_id',
 		function(err, rows, fields){
 			data.components_products = rows;
@@ -192,9 +196,53 @@ app.get ('/component_product', function (req, res) {
 				console.log(err);
 				console.log("Something went wrong pulling the Component/Product Association.");
 			}
-			res.render('component_product', {cp:data.components_products});
+
+	connection.query ('SELECT * FROM Components', function (err, rows, fields) {
+data1.components = rows;
+if (err) {
+	console.log(err);
+	console.log ("Error");
+}
+
+	connection.query ('SELECT * FROM Products', function (err, rows, fields) {
+data2.products = rows;
+if (err) {
+	console.log(err);
+	console.log ("Error");
+}
+
+console.log (data1.components);
+console.log (data2.products);
+
+			res.render('component_product', {cp:data.components_products, comp:data1.components, prod:data2.products});
 		});
 });
+
+});
+});
+
+app.get ('/component_product_insert', function (req, res) {
+	connection.query ('INSERT INTO Components_Products (`cid`, `pid`, `Component_quantity`) VALUES (?,?,?)',
+	[req.query.cid, req.query.pid, req.query.cQty],
+	function (err, results) {
+		if (err) {
+			console.log(err);
+			console.log("Something went wrong trying to insert a Component.");
+			return;
+		}
+		connection.query('SELECT * FROM Components', function(err, rows, fields){
+			data.components = rows;
+			if(err){
+				console.log(err);
+				console.log("Something has gone wrong trying to retrieve Components rows from db.");
+				return;
+			}
+			res.redirect('component_product');
+		});
+	});
+});
+
+
 
 /*******************
 ORDER ENTITY
@@ -206,13 +254,13 @@ ORDER ENTITY
 
 app.get ('/order', function (req, res) {
 	data = {};
-	connection.query('SELECT * FROM Orders', function(err, rows, fields){
+	connection.query('SELECT * FROM Orders INNER JOIN Customers on Order_Customer_id = Customer_id', function(err, rows, fields){
 			data.orders = rows;
 			if(err){
 				console.log(err);
 				console.log("Something went wrong pulling the Orders");
 			}
-			console.log(rows);
+			//console.log(rows);
 			res.render('order', {order:data.orders});
 		});
 });
@@ -229,15 +277,15 @@ app.get('/order-delete', function(req, res){
 });
 
  app.get ('/orders-insert', function (req, res) {
-	connection.query ('INSERT INTO Orders (`Order_status`, `Order_dateCreated`, `Order_dateFulfilled`, `Order_Customer_id` ) VALUES (?,?,?,?)',
-	[req.query.ostatus, req.query.datec, req.query.datef, req.query.customer],
+	connection.query ('INSERT INTO Orders (`Order_status`, `Order_dateCreated`, `Order_Customer_id` ) VALUES (?,?,?)',
+	[req.query.ostatus, req.query.datec, req.query.customer],
 	function (err, results) {
 		if (err) {
 			console.log(err);
 			console.log("Something went wrong trying to insert an Order.");
 			return;
 		}
-		connection.query('SELECT * FROM Orders', function(err, rows, fields){
+		connection.query('SELECT * FROM Orders INNER JOIN Customers on Order_Customer_id = Customer_id', function(err, rows, fields){
 			data.orders = rows;
 			if(err){
 				console.log(err);

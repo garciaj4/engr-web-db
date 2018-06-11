@@ -1,31 +1,50 @@
 
 <html>
-{{#each foo}}
-{{this}}
-{{/each}}
+
 <div>
-<h3> Add components to a product  </h3>
-    <form id="add_components_products" action="/component_product" method="post">
-    Product: <select name='pid'>
-    <option> Test Product1 </option>
-    <option> Test Product2 </option>   
-    <option> Test Product3 </option>
-    <option> Test Product4 </option>
-    <option> Test Product5 </option>
+<fieldset>
+<legend > Add a Component to a Product: </legend>
+<form class="form-horizontal" id= "add_components_products" action="/component_product_insert" method="GET">
+
+    <div class="form-group">
+    <label for="mid" class="col-sm-2 control-label">Select the Product</label>
+    <div class="col-sm-10">
+      <select name="pid">
+        {{#each prod}}
+          <option value='{{Product_id}}'>{{Product_name}}</option>
+        {{/each}}
     </select>
-    
-    Components :<sup>Multi-select</sup> <select multiple name="components"> 
-    <option> Test component1 </option>     
-    <option> Test component2 </option>
-    <option> Test component3 </option>
-    <option> Test component4 </option>
-    <option> Test component5 </option>
-    <option> Test component6 </option>
-    <option> Test component7 </option>
-    <<option> Test component8 </option>
-</select><br>
-    <input type="submit" value="Submit" text= "add">
-    </form>
+    </div>
+  </div>
+
+
+    <div class="form-group" >
+    <label for="mid" class="col-sm-2 control-label">Select the Component</label>
+    <div class="col-sm-10">
+      <select name="cid">
+        {{#each comp}}
+          <option value='{{Component_id}}'>{{Component_partNumber}}</option>
+        {{/each}}
+    </select>
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label for="Component_quantity" class="col-sm-2 control-label">Quantity</label>
+    <div class="col-sm-2">
+      <input type="number" class="form-control" id="cQty" name="cQty" placeholder="Quantity">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default"> Add Component to Product </button>
+    </div>
+  </div>
+</form>
+</fieldset>
+
+
 </div>
 <br/>
 <h2> Here are the Components associated with each Product. </h2>

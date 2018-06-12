@@ -273,13 +273,27 @@ app.get ('/component_product_insert', function (req, res) {
 });
 
 
-app.get('/component-product-delete', function(req, res){
+app.get('/component_product-delete', function(req, res){
 	connection.query('DELETE FROM Components_Products WHERE cid=? AND pid=?', [req.query.cid, req.query.pid], function(err, result){
 		if(err){
 			console.log(err);
 			console.log("Something went wrong trying to delete entry from Components.");
 		}
 	});
+});
+
+app.post('/component_product-update', function(req, res, next){
+
+	connection.query('UPDATE Components_Products Set Component_quantity=? WHERE cid=? AND pid=?',
+		[req.body.qty, req.body.cid, req.body.pid],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
 });
 
 /*******************

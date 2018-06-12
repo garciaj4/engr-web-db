@@ -133,7 +133,7 @@ function updateComponent(id){
 function deleteCP(cid, pid){
 	var req = new XMLHttpRequest();
 
-	var URL = "/component-product-delete"
+	var URL = "/component_product-delete"
 	+ "?cid=" + cid
 	+ "&pid=" + pid;
 
@@ -151,19 +151,17 @@ function deleteCP(cid, pid){
 	location.reload(true);
 }
 
-function updateProduct(id){
+function updateCP(cid, pid){
 
 	var req = new XMLHttpRequest();
 
-	var payload = "id=" + id
-				+"&name="			+ document.getElementById("prod"+id+"_name").value
-				+"&description="	+ document.getElementById("prod"+id+"_description").value
-				+"&cost="			+ document.getElementById("prod"+id+"_cost").value
-				+ "&price="			+ document.getElementById("prod"+id+"_price").value;
+	var payload = "cid=" + cid
+				+ "&pid=" + pid
+				+ "&qty=" + document.getElementById("c"+cid+"p"+pid+"_cQty").value;
 
 	console.log(payload);
 
-	req.open("POST", '/product-update', true);
+	req.open("POST", '/component_product-update', true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 
 	req.addEventListener('load', function(){

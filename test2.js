@@ -114,6 +114,20 @@ app.get('/product', function (req,res){
 	});
 });
 
+app.post('/product-update', function(req, res, next){
+
+	connection.query('UPDATE Products Set Product_name=?, Product_description=?, Product_cost=?, Product_price=? WHERE Product_id=?',
+		[req.body.name, req.body.description, req.body.cost, req.body.price, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
+
 /*******************
 COMPONENT ENTITY
 	-Display

@@ -44,7 +44,7 @@ app.get ('/customer', function (req,res){
 			console.log(err);
 			console.log("Something went wrong trying to retrieve Customers from db.");
 		}
-		console.log (data.customers);
+		//console.log (data.customers);
 		res.render ('customer', {customer:data.customers});
 	});
 	});

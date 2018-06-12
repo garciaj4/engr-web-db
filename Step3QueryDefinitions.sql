@@ -131,7 +131,7 @@ CREATE TABLE `Orders_Products` (
     `pid` int(11),
     `Product_quantity` int(11) NOT NULL DEFAULT 1,
     PRIMARY KEY (`oid`,`pid`),
-    FOREIGN KEY (`oid`) REFERENCES `Orders` (`Order_id`),
+    FOREIGN KEY (`oid`) REFERENCES `Orders` (`Order_id`) ON DELETE CASCADE,
     FOREIGN KEY (`pid`) REFERENCES `Products` (`Product_id`)
 ) ENGINE = InnoDB;
 

@@ -126,7 +126,34 @@ function updateComponent(id){
 
 	req.send(payload);
 }
+//________________________________Product Functions__________________________________________________________________________
+//*********************************************************************************************************************************
 
+function updateProduct(id){
+
+	var req = new XMLHttpRequest();
+
+
+	var payload = "id=" + id
+				+"&name="			+ document.getElementById("prod"+id+"_name").value
+				+"&description="	+ document.getElementById("prod"+id+"_description").value
+				+"&cost="		+ document.getElementById("prod"+id+"_cost").value
+				+"&price="		+ document.getElementById("prod"+id+"_price").value;
+
+	req.open("POST", '/product-update', true);
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+	req.addEventListener('load', function(){
+		if (req.status >= 200 && req.status < 400) {
+			console.log("Successfull update.");
+		}else{
+			console.log("Error in network request: " + req.statusTest);
+		}
+		location.reload(true);
+	});
+
+	req.send(payload);
+}
 //________________________________Product_Component Functions__________________________________________________________________________
 //*********************************************************************************************************************************
 

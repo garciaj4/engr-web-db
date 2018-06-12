@@ -77,6 +77,32 @@ function deleteOrder(oid, pid){
 //________________________________Component Functions__________________________________________________________________________
 //*********************************************************************************************************************************
 
+function updateComponent(id){
+
+	var req = new XMLHttpRequest();
+
+	var payload = "id=" + id
+				+"&mid="		+ document.getElementById("comp"+id+"_Manufacturer_id").value
+				+"&partNumber="	+ document.getElementById("comp"+id+"_partNumber").value
+				+"&type="		+ document.getElementById("comp"+id+"_type").value
+				+"&stock="		+ document.getElementById("comp"+id+"_stock").value
+				+"&cost="		+ document.getElementById("comp"+id+"_cost").value
+				+"&leadTime="	+ document.getElementById("comp"+id+"_leadTime").value;
+
+	req.open("POST", '/component-update', true);
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+	req.addEventListener('load', function(){
+		if (req.status >= 200 && req.status < 400) {
+			console.log("Successfull update.");
+		}else{
+			console.log("Error in network request: " + req.statusTest);
+		}
+		location.reload(true);
+	});
+
+	req.send(payload);
+}
 
 //________________________________Product Functions__________________________________________________________________________
 //*********************************************************************************************************************************

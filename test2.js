@@ -193,6 +193,20 @@ app.get('/component-delete', function(req, res){
 	});
 });
 
+app.post('/component-update', function(req, res, next){
+
+	connection.query('UPDATE Components Set Component_Manufacturer_id=?, Component_partNumber=?, Component_type=?, Component_stock=?, Component_cost=?, Component_leadTime=? WHERE Component_id=?',
+		[req.body.mid, req.body.partNumber, req.body.type, req.body.stock, req.body.cost, req.body.leadTime, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
+
 /***************************
 COMPONENT-PRODUCT ENTITY
 	-Display

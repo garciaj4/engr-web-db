@@ -228,17 +228,17 @@ app.get ('/component_product', function (req, res) {
 			}
 
 	connection.query ('SELECT * FROM Components', function (err, rows, fields) {
-data1.components = rows;
-if (err) {
-	console.log(err);
-	console.log ("Error");
+	data1.components = rows;
+		if (err) {
+			console.log(err);
+			console.log ("Error");
 }
 
 	connection.query ('SELECT * FROM Products', function (err, rows, fields) {
-data2.products = rows;
-if (err) {
-	console.log(err);
-	console.log ("Error");
+	data2.products = rows;
+		if (err) {
+			console.log(err);
+			console.log ("Error");
 }
 
 //console.log (data1.components);
@@ -273,6 +273,14 @@ app.get ('/component_product_insert', function (req, res) {
 });
 
 
+app.get('/component-product-delete', function(req, res){
+	connection.query('DELETE FROM Components_Products WHERE cid=? AND pid=?', [req.query.cid, req.query.pid], function(err, result){
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to delete entry from Components.");
+		}
+	});
+});
 
 /*******************
 ORDER ENTITY
@@ -298,7 +306,7 @@ app.get ('/order', function (req, res) {
 
 
 app.get('/order-delete', function(req, res){
-	connection.query('DELETE FROM Orders_Products WHERE oid=? AND pid=?', [req.query.oid, req.query.pid], function(err, result){
+	connection.query('DELETE FROM Orders WHERE oid=?', [req.query.oid], function(err, result){
 		if(err){
 			console.log(err);
 			console.log("Something went wrong trying to delete entry from Components.");

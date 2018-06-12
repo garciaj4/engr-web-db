@@ -59,12 +59,13 @@
             <td> <input id="order{{this.Order_id}}_oStatus" value="{{this.Order_status}}"> </td>
            <!--  <td> <input id="order{{this.Order_id}}_pName" value="{{this.Product_name}}"> </td>
             <td> <input id="order{{this.Order_id}}_pQty" value="{{this.Product_quantity}}"> </td> -->
-            <td id="order{{this.Order_id}}_delete">
-              <a href="javascript:deleteOrder({{this.Order_id}}, {{this.Product_id}});">
-              Delete</a></td>
             <td id="order{{this.Order_id}}_edit">
               <a href="javascript:updateOrder(order{{this.Order_id}});">
               Update</a>
+            <td id="order{{this.Order_id}}_delete">
+              <a href="javascript:deleteOrder({{this.Order_id}});">
+              Delete</a></td>
+
             </td>
         </tr>
         {{/order}}

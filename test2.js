@@ -4,6 +4,10 @@ var port = process.env.PORT ||6835 ;
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 var mysql = require ('mysql')
 var connection = mysql.createConnection({
 	host		: 'classmysql.engr.oregonstate.edu',
@@ -89,7 +93,6 @@ app.get('/product', function (req,res){
 	});
 });
 
-
  app.get ('/products-insert', function (req, res) {
 	connection.query ('INSERT INTO Products (`Product_name`, `Product_description`, `Product_cost`, `Product_price` ) VALUES (?,?,?,?)',
 	[req.query.pname, req.query.pdescription, req.query.pcost, req.query.pprice],
@@ -138,8 +141,8 @@ app.get ('/component', function (req, res){
  	 //console.log(dd_data.dropdown);
    
 	
-	console.log (dd_data.dropdown);
-	console.log (data.components);
+	//console.log (dd_data.dropdown);
+	//console.log (data.components);
 		res.render ('component', {component:data.components, dropdown:dd_data.dropdown});
 		
 	});
@@ -166,7 +169,6 @@ app.get ('/component-insert', function (req, res) {
 		});
 	});
 });
-
 
 app.get('/component-delete', function(req, res){
 	connection.query('DELETE FROM Components WHERE Component_id=?', [req.query.id], function(err, result){
@@ -211,8 +213,8 @@ if (err) {
 	console.log ("Error");
 }
 
-console.log (data1.components);
-console.log (data2.products);
+//console.log (data1.components);
+//console.log (data2.products);
 
 			res.render('component_product', {cp:data.components_products, comp:data1.components, prod:data2.products});
 		});
@@ -341,6 +343,8 @@ app.get('/manufacturer', function(req, res){
 });
 
 app.get ('/manufacturer-insert', function (req, res) {
+
+	data = {};
 	connection.query ('INSERT INTO Manufacturers (`Manufacturer_name`, `Manufacturer_phone`, `Manufacturer_zip`, `Manufacturer_discount`, `Manufacturer_preferred`) VALUES (?,?,?,?,?)',
 	[req.query.name, req.query.phone, req.query.zip, req.query.discount, req.query.preferred],
 	function (err, results) {
@@ -380,6 +384,7 @@ app.get('/manufacturer-update', function(req, res, next){
 				console.log("Something went wrong trying to update a Manufacturer.");
 				return;
 			}
+			res.send("successfull update");
 		});
 });
 

@@ -44,7 +44,7 @@ app.get ('/customer', function (req,res){
 			console.log(err);
 			console.log("Something went wrong trying to retrieve Customers from db.");
 		}
-		console.log (data.customers);
+		//console.log (data.customers);
 		res.render ('customer', {customer:data.customers});
 	});
 	});
@@ -114,6 +114,20 @@ app.get('/product', function (req,res){
 	});
 });
 
+app.post('/product-update', function(req, res, next){
+
+	connection.query('UPDATE Products Set Product_name=?, Product_description=?, Product_cost=?, Product_price=? WHERE Product_id=?',
+		[req.body.name, req.body.description, req.body.cost, req.body.price, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
+
 /*******************
 COMPONENT ENTITY
 	-Display
@@ -179,6 +193,20 @@ app.get('/component-delete', function(req, res){
 	});
 });
 
+app.post('/component-update', function(req, res, next){
+
+	connection.query('UPDATE Components Set Component_Manufacturer_id=?, Component_partNumber=?, Component_type=?, Component_stock=?, Component_cost=?, Component_leadTime=? WHERE Component_id=?',
+		[req.body.mid, req.body.partNumber, req.body.type, req.body.stock, req.body.cost, req.body.leadTime, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
+
 /***************************
 COMPONENT-PRODUCT ENTITY
 	-Display
@@ -200,17 +228,17 @@ app.get ('/component_product', function (req, res) {
 			}
 
 	connection.query ('SELECT * FROM Components', function (err, rows, fields) {
-data1.components = rows;
-if (err) {
-	console.log(err);
-	console.log ("Error");
+	data1.components = rows;
+		if (err) {
+			console.log(err);
+			console.log ("Error");
 }
 
 	connection.query ('SELECT * FROM Products', function (err, rows, fields) {
-data2.products = rows;
-if (err) {
-	console.log(err);
-	console.log ("Error");
+	data2.products = rows;
+		if (err) {
+			console.log(err);
+			console.log ("Error");
 }
 
 //console.log (data1.components);
@@ -245,6 +273,14 @@ app.get ('/component_product_insert', function (req, res) {
 });
 
 
+app.get('/component-product-delete', function(req, res){
+	connection.query('DELETE FROM Components_Products WHERE cid=? AND pid=?', [req.query.cid, req.query.pid], function(err, result){
+		if(err){
+			console.log(err);
+			console.log("Something went wrong trying to delete entry from Components.");
+		}
+	});
+});
 
 /*******************
 ORDER ENTITY
@@ -270,7 +306,7 @@ app.get ('/order', function (req, res) {
 
 
 app.get('/order-delete', function(req, res){
-	connection.query('DELETE FROM Orders_Products WHERE oid=? AND pid=?', [req.query.oid, req.query.pid], function(err, result){
+	connection.query('DELETE FROM Orders WHERE oid=?', [req.query.oid], function(err, result){
 		if(err){
 			console.log(err);
 			console.log("Something went wrong trying to delete entry from Components.");

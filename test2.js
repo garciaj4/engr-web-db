@@ -306,7 +306,7 @@ app.get ('/order', function (req, res) {
 
 
 app.get('/order-delete', function(req, res){
-	connection.query('DELETE FROM Orders WHERE oid=?', [req.query.oid], function(err, result){
+	connection.query('DELETE FROM Orders WHERE Order_id=?', [req.query.oid], function(err, result){
 		if(err){
 			console.log(err);
 			console.log("Something went wrong trying to delete entry from Components.");

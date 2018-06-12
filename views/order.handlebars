@@ -54,13 +54,13 @@
         {{#order}}
         <tr>
             <td id="order{{this.Order_id}}_id">{{this.Order_id}}</td>
-            <td> <input id="order{{this.Order_id}}_cName" value="{{this.Customer_name}}"></td>
+            <td id="order{{this.Order_id}}_cName">{{this.Customer_name}}</td>
             <td> <input id="order{{this.Order_id}}_pDate" value="{{this.Order_dateCreated}}"> </td> 
             <td> <input id="order{{this.Order_id}}_oStatus" value="{{this.Order_status}}"> </td>
            <!--  <td> <input id="order{{this.Order_id}}_pName" value="{{this.Product_name}}"> </td>
             <td> <input id="order{{this.Order_id}}_pQty" value="{{this.Product_quantity}}"> </td> -->
             <td id="order{{this.Order_id}}_edit">
-              <a href="javascript:updateOrder(order{{this.Order_id}});">
+              <a href="javascript:updateOrder({{this.Order_id}});">
               Update</a>
             <td id="order{{this.Order_id}}_delete">
               <a href="javascript:deleteOrder({{this.Order_id}});">

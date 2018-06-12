@@ -335,6 +335,19 @@ app.get('/order-delete', function(req, res){
 	});
 });
 
+app.post('/order-update', function(req, res, next){
+
+	connection.query('UPDATE Orders Set Order_dateCreated=?, Order_status=? WHERE Order_id=?',
+		[req.body.pDate, req.body.oStatus, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
 
 /*******************
 ORDER/PRODUCT ENTITY

@@ -35,7 +35,7 @@ function updateManufacturer(id){
 
 	//console.log(URL);
 
-	req.open("POST", URL, true);
+	req.open("GET", URL, true);
 
 	req.addEventListener('load', function(){
 		if (req.status >= 200 && req.status < 400) {
@@ -70,6 +70,30 @@ function deleteOrder(oid){
 
 	req.send(null);
 	location.reload(true);
+}
+
+function updateOrder(id){
+
+	var req = new XMLHttpRequest();
+
+
+	var payload = "id=" + id
+				+"&pDate="	+ document.getElementById("order"+id+"_pDate").value
+				+"&oStatus="		+ document.getElementById("order"+id+"_oStatus").value;
+
+	req.open("POST", '/order-update', true);
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+	req.addEventListener('load', function(){
+		if (req.status >= 200 && req.status < 400) {
+			console.log("Successfull update.");
+		}else{
+			console.log("Error in network request: " + req.statusTest);
+		}
+		location.reload(true);
+	});
+
+	req.send(payload);
 }
 
 //________________________________Component Functions__________________________________________________________________________

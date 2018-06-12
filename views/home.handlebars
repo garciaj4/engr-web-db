@@ -1,18 +1,22 @@
 <!doctype html>
-<h1> Welcome to the Inventory System </h1>
-<h3> Please select one of the following </h3>
-<table id= "home_table" border="2px solid black">
+<h1 text-align= "center"> Welcome to the Inventory System </h1>
+<h3 text-align= "center" > Please select one of the following </h3>
+<table class= "table-hover" id= "home_table" border="2px solid black">
   <tbody>
     <tr>
-      <td> <a href = "/component" > Component </a>  <br>  -Search Components <br> -Add/Delete/Edit Components </td>
-      <td> <a href="/manufacturer"> Manufacturer </a><br> -Search Manufacturer <br> -Add/Delete/Edit Manufacturer </td>
-      <td> <a href = "/product" > Product </a> <br> -Search Product <br> -Add/Delete/Edit Product  </td>
+      <td> <a href = "/component" > <div class= "hometitle" > Component </div> </a> <br> Add/Edit </td>
+      <td> <a href="/manufacturer"> <div class= "hometitle" > Manufacturer </div> </a> <br> Search/Add/Edit </td>
+      <td> <a href = "/product" > <div class= "hometitle" > Product </div> </a> <br> Add/Edit   </td>
     </tr>
     <tr>
-     <td> <a href ="/customer"> Customers </a> <br> -Search Customer <br> -Add/Delete/Edit Customers </td>
-     <td> <a href = "/order" >  Orders </a>  <br> -Search Orders <br> -Place/Delete/Edit Orders </td>
-     <td> <a href = "/component_product"> Product </a> <br> View and modify components needed to build a product </td>
+     <td> <a href ="/customer"> <div class= "hometitle" > Customers  </div> </a> <br> Add/Edit  </td>
+     <td> <a href = "/order" >  <div class= "hometitle" > Orders </div> </a> <br> Add/Delete/Edit  </td>
+     <td> <a href = "/component_product"> <div class= "hometitle" > Components- Product </div> </a> <br> Add/Delete/Uptade </td>
    </tr>
    
   </tbody>
         </table>
+
+        <p> Note 1: Due to dependencies with other entities, only our orders and product/component entities have a delete functionality </p>
+
+        <p> Note 2: Search functionality present in manufacturer page </p>

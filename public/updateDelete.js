@@ -203,3 +203,33 @@ function updateCP(cid, pid){
 	req.send(payload);
 
 }
+
+//________________________________Customer Functions__________________________________________________________________________
+//*********************************************************************************************************************************
+
+function updateCustomer(id){
+
+	var req = new XMLHttpRequest();
+
+
+	var payload = "id=" + id
+				+"&name="		+ document.getElementById("cust"+id+"_name").value
+				+"&phone="		+ document.getElementById("cust"+id+"_phone").value
+				+"&street="		+ document.getElementById("cust"+id+"_street").value
+				+"&city="		+ document.getElementById("cust"+id+"_city").value
+				+"&zip="		+ document.getElementById("cust"+id+"_zip").value;
+
+	req.open("POST", '/customer-update', true);
+	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+	req.addEventListener('load', function(){
+		if (req.status >= 200 && req.status < 400) {
+			console.log("Successfull update.");
+		}else{
+			console.log("Error in network request: " + req.statusTest);
+		}
+		location.reload(true);
+	});
+
+	req.send(payload);
+}

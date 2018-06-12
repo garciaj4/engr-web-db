@@ -70,8 +70,19 @@ app.get ('/customer-insert', function (req, res) {
 	});
 });
 
+app.post('/customer-update', function(req, res, next){
 
-
+	connection.query('UPDATE Customers Set Customer_name=?, Customer_phone=?, Customer_street=?, Customer_city=?, Customer_zip=? WHERE Customer_id=?',
+		[req.body.name, req.body.phone, req.body.street, req.body.city, req.body.zip, req.body.id],
+		function(err, result){
+			if(err){
+				console.log(err);
+				console.log("Something went wrong trying to update a Manufacturer.");
+				return;
+			}
+			res.send("successfull update");
+		});
+});
 
 /*******************
 PPRODUCT ENTITY
